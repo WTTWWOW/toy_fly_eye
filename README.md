@@ -63,6 +63,18 @@ pytest
 Stage 1 runs on a laptop CPU. Stage 2's timing run needs a GPU (free Colab or a lab
 machine); use `envs/stage2-flyvis.yml`. Stage 3 uses `envs/stage3-flygym.yml`.
 
+## Review and edit it yourself
+
+Pick one:
+
+- **Local, VS Code** (recommended): `git clone https://github.com/WTTWWOW/toy_fly_eye && cd toy_fly_eye && make setup`, then open the folder in VS Code and accept the recommended extensions. Select `.venv` as the interpreter. The Testing panel runs `pytest`, and `.vscode/launch.json` has debug configs for the current file and its tests.
+- **GitHub Codespaces**: on the repo page choose Code > Codespaces > Create. The dev container installs everything. Press `.` on the repo page for a lightweight browser editor instead.
+- **Dev container locally**: open the folder in VS Code and choose "Reopen in Container".
+
+Handy commands: `make test`, `make lab` (JupyterLab in `notebooks/`).
+
+Work on a branch and open a pull request if you want Claude's changes reviewed as diffs; the GitHub pull-request extension is in the recommended set.
+
 ## Conventions
 
 - Fix seeds with `toyeye.utils.set_seed` at the top of every script and notebook.
