@@ -1,16 +1,16 @@
-.PHONY: setup test lab clean
+.PHONY: setup test lab fmt clean
 
-setup:  ## create .venv and install the package with dev tools
-	python3 -m venv .venv
-	.venv/bin/pip install -U pip
-	.venv/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu
-	.venv/bin/pip install -e '.[dev]'
+setup:  ## create .venv and install everything from uv.lock
+	uv sync
 
 test:   ## run the unit tests
-	.venv/bin/pytest -q
+	uv run pytest -q
 
 lab:    ## open JupyterLab in notebooks/
-	.venv/bin/jupyter lab notebooks/
+	uv run jupyter lab notebooks/
+
+fmt:    ## format and lint-fix with ruff
+	uv run ruff format . && uv run ruff check --fix .
 
 clean:
 	rm -rf .pytest_cache build dist src/*.egg-info
