@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Data, runs and checkpoints (keep large files out of git)
+data/
+results/*
+!results/README.md
+runs/
+wandb/
+lightning_logs/
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.npz
+*.mp4
+
+# flyvis / FlyGym caches
+flyvis_data/
+Sintel*/
+MUJOCO_LOG.TXT

@@ -1,0 +1,12 @@
+# Stage 2: flyvis. Kept separate to avoid install clashes.
+# The training tutorial also needs the Sintel data: https://turagalab.github.io/flyvis/install/
+name: toyeye-flyvis
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - pip
+  - pip:
+      - flyvis
+      - -e ..

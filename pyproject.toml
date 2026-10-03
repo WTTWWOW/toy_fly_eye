@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toyeye"
+version = "0.1.0"
+description = "A 1D toy fly eye for practising self-supervised motion learning and neural probes"
+requires-python = ">=3.10"
+dependencies = ["numpy", "matplotlib", "torch"]
+
+[project.optional-dependencies]
+dev = ["pytest", "jupyter", "tensorboard"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

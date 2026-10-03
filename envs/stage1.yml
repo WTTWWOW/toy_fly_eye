@@ -1,0 +1,15 @@
+# Stage 0-1: the toy eye. CPU is enough.
+name: toyeye
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - matplotlib
+  - pytorch
+  - cpuonly
+  - jupyterlab
+  - pytest
+  - tensorboard
+  - pip

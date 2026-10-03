@@ -1,0 +1,12 @@
+# Stage 3 (optional): FlyGym, simulated in MuJoCo.
+name: toyeye-flygym
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - pip
+  - pip:
+      - flygym
+      - flyvis
+      - -e ..
