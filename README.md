@@ -1,4 +1,4 @@
-# toy-fly-eye
+# toy_fly_eye
 
 **Teach a tiny eye to see motion.** A one-dimensional fly eye watches a rotating drum,
 is trained with and without labels, and is probed like an electrophysiologist would.
