@@ -9,8 +9,17 @@ description = "A 1D toy fly eye for practising self-supervised motion learning a
 requires-python = ">=3.10"
 dependencies = ["numpy", "matplotlib", "torch"]
 
+[dependency-groups]
+dev = ["pytest", "jupyterlab", "ipykernel", "tensorboard", "ruff"]
+
+# Install a stage on demand, e.g. `uv sync --extra flyvis` (kept out of the default
+# environment because flyvis and FlyGym are large and can pin their own versions).
 [project.optional-dependencies]
-dev = ["pytest", "jupyter", "tensorboard"]
+flyvis = ["flyvis"]
+flygym = ["flygym", "flyvis"]
+
+[tool.uv]
+default-groups = ["dev"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

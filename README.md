@@ -14,7 +14,7 @@ timing run sizes the flagship's ensembles.
 
 | Stage | What | Hours | Where in the repo |
 |---|---|---|---|
-| 0 | Setup: repo, environment, lab notebook, fixed seeds | 2–4 | `envs/`, `LAB_NOTEBOOK.md`, `toyeye.utils.set_seed` |
+| 0 | Setup: repo, environment, lab notebook, fixed seeds | 2–4 | `pyproject.toml`, `LAB_NOTEBOOK.md`, `toyeye.utils.set_seed` |
 | 1 | Toy eye: drum world, Reichardt detector, learnable eye, four training objectives, probes | 20–30 | `src/toyeye/`, `tests/`, `notebooks/` |
 | 2 | flyvis: tutorials 1–4, pretrained ensemble, T4/T5 probes, Sintel bridge experiment, timing run | 12–20 | `stage2_flyvis/` |
 | 3 (optional) | FlyGym: record a fly's-eye walk with efference copy | 10–15 | `stage3_flygym/` |
@@ -46,34 +46,49 @@ notebooks/         exploration and figures
 scripts/           training entry points
 stage2_flyvis/     flyvis tutorials, probes and the bridge experiment
 stage3_flygym/     FlyGym recording script (optional)
-envs/              one conda environment per stage
+pyproject.toml     dependencies (uv); uv.lock pins exact versions
 results/           run outputs (git-ignored except for README)
 LAB_NOTEBOOK.md    dated log of every run and its settings
 ```
 
-## Getting started
+## Getting started (uv + local VS Code)
+
+The environment is managed with [uv](https://docs.astral.sh/uv/). Install it once
+(`curl -LsSf https://astral.sh/uv/install.sh | sh` on Mac/Linux,
+`powershell -c "irm https://astral.sh/uv/install.ps1 | iex"` on Windows), then:
 
 ```bash
-conda env create -f envs/stage1.yml
-conda activate toyeye
-pip install -e .
-pytest
+git clone https://github.com/WTTWWOW/toy_fly_eye
+cd toy_fly_eye
+uv sync          # creates .venv from uv.lock (Python 3.11, per .python-version)
+uv run pytest    # 3 passed, 7 xfailed until Stage 1 is implemented
 ```
 
-Stage 1 runs on a laptop CPU. Stage 2's timing run needs a GPU (free Colab or a lab
-machine); use `envs/stage2-flyvis.yml`. Stage 3 uses `envs/stage3-flygym.yml`.
+`make setup`, `make test`, `make lab` (JupyterLab in `notebooks/`) and `make fmt` are
+shortcuts for the same `uv` commands (`make` is optional; on Windows without WSL, run the
+`uv` commands directly).
 
-## Review and edit it yourself
+Then open the folder in VS Code, accept the recommended extensions, and make sure the
+interpreter is `.venv` (Ctrl/Cmd+Shift+P, "Python: Select Interpreter"). The Testing panel
+runs pytest, and `.vscode/launch.json` has debug configs for the current file and its tests.
+In a notebook, pick the `.venv` kernel.
 
-Pick one:
+Add packages with `uv add <package>` (or `uv add --dev <package>` for tools) and commit
+the updated `pyproject.toml` and `uv.lock`. Stage 2 and 3 dependencies are optional extras:
+`uv sync --extra flyvis`, `uv sync --extra flygym`.
 
-- **Local, VS Code** (recommended): `git clone https://github.com/WTTWWOW/toy_fly_eye && cd toy_fly_eye && make setup`, then open the folder in VS Code and accept the recommended extensions. Select `.venv` as the interpreter. The Testing panel runs `pytest`, and `.vscode/launch.json` has debug configs for the current file and its tests.
-- **GitHub Codespaces**: on the repo page choose Code > Codespaces > Create. The dev container installs everything. Press `.` on the repo page for a lightweight browser editor instead.
-- **Dev container locally**: open the folder in VS Code and choose "Reopen in Container".
+**Disk and GPU notes.** On Linux and Windows the default PyTorch wheel is the CUDA build,
+so `.venv` is several GB (about 5 GB on Linux). If you only need CPU and want a small
+install, follow uv's [PyTorch guide](https://docs.astral.sh/uv/guides/integration/pytorch/)
+to point `torch` at the CPU index. Stage 1 runs on a laptop CPU; Stage 2's timing run needs
+a GPU (free Colab or a lab machine).
 
-Handy commands: `make test`, `make lab` (JupyterLab in `notebooks/`).
+## Other ways to open it
 
-Work on a branch and open a pull request if you want Claude's changes reviewed as diffs; the GitHub pull-request extension is in the recommended set.
+- **GitHub Codespaces**: Code > Codespaces > Create on the repo page. The dev container runs `uv sync` for you.
+- **Dev container locally**: open the folder in VS Code and choose "Reopen in Container" (needs Docker).
+
+Work on a branch and open a pull request for changes you want reviewed as diffs; the GitHub pull-request extension is in the recommended set.
 
 ## Conventions
 

@@ -6,4 +6,4 @@
 - [ ] Bridge experiment: downsampled Sintel, photometric error for true vs zero flow with `grid_sample`, on original and repeated frames
 - [ ] Time a few hundred supervised iterations on a GPU; record seconds per iteration in `LAB_NOTEBOOK.md`
 
-Environment: `envs/stage2-flyvis.yml`. Sintel setup: https://turagalab.github.io/flyvis/install/
+Environment: `uv sync --extra flyvis`. Sintel setup: https://turagalab.github.io/flyvis/install/
