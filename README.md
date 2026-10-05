@@ -21,8 +21,8 @@ timing run sizes the flagship's ensembles.
 
 ### Stage 1 checklist
 
-- [ ] `world.make_drum(pattern, velocity, steps)` → `steps × 32` array, sub-pixel shifts, wrap-around
-- [ ] Space–time plots: stripes tilt opposite ways for left vs right motion
+- [x] `world.make_drum(pattern, velocity, steps)` → `steps × 32` array, sub-pixel shifts, wrap-around
+- [x] Space–time plots: stripes tilt opposite ways for left vs right motion
 - [ ] Hand-built Hassenstein–Reichardt detector whose sign tracks direction
 - [ ] Warp unit tests pass (true v gives near-zero error, v = 0 clearly more)
 - [ ] Tiny learnable eye: 1D conv across receptors + per-column GRU with shared weights
@@ -40,6 +40,7 @@ src/toyeye/        the reusable package
   models.py        the tiny learnable eye (conv + shared GRU)
   losses.py        oracle, temporal-prediction, photometric-warp, latent-prediction
   probes.py        velocity error, copy baseline, DSI, TF tuning, generalisation, collapse
+  plots.py         space–time plots
   utils.py         seeds, device, run directories
 tests/             unit tests (run before any training)
 notebooks/         exploration and figures
@@ -61,7 +62,7 @@ The environment is managed with [uv](https://docs.astral.sh/uv/). Install it onc
 git clone https://github.com/WTTWWOW/toy_fly_eye
 cd toy_fly_eye
 uv sync          # creates .venv from uv.lock (Python 3.11, per .python-version)
-uv run pytest    # 3 passed, 7 xfailed until Stage 1 is implemented
+uv run pytest    # all pass; the 7 xfailed are Stage 1 steps not built yet
 ```
 
 `make setup`, `make test`, `make lab` (JupyterLab in `notebooks/`) and `make fmt` are
