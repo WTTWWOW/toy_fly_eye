@@ -31,7 +31,7 @@ Template:
 - Commit: Reichardt detector (branch `claude/project-thread-vxvn6a`)
 - Command / notebook: `uv run python scripts/reichardt_on_drum.py --seed 0`; `uv run pytest tests/test_reichardt.py`
 - Settings: seed 0, τ = 2 steps, speed ±0.5 receptors/step, 64 steps, grating λ = 8, texture σ = 2
-- Result: `lowpass` and `reichardt` implemented; 18 new tests pass. Mean output is
+- Result: `lowpass` and `reichardt` implemented; 25 new tests pass. Mean output is
   negative for v < 0 and positive for v > 0 on gratings and textures. Grating (λ = 8)
   response peaks near |v| ≈ 0.5–1 and reverses sign past |v| = 4 (half a wavelength
   per step: spatial aliasing). The output ripples at the grating's temporal frequency
