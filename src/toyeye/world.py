@@ -50,8 +50,9 @@ def make_drum(pattern: np.ndarray, velocity: float, steps: int) -> np.ndarray:
     pattern = np.asarray(pattern, dtype=float)
     n = len(pattern)
     x = np.arange(n)
-    t = np.arange(steps)[:, None]
-    src = x[None, :] - velocity * t  # where each receptor looks on the pattern
+    t = np.arange(steps)[:, None]  #making "steps" a column of shape (steps,1)
+    src = x[None, :] - velocity * t  # where each receptor looks on the pattern.
+                                    #x is made a row of shape (1,32). src: matrix of (steps,32), each row represent pattern at each receptor at a time step
     left = np.floor(src)
     frac = src - left
     left = left.astype(int) % n
