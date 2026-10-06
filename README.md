@@ -23,7 +23,7 @@ timing run sizes the flagship's ensembles.
 
 - [x] `world.make_drum(pattern, velocity, steps)` → `steps × 32` array, sub-pixel shifts, wrap-around
 - [x] Space–time plots: stripes tilt opposite ways for left vs right motion
-- [ ] Hand-built Hassenstein–Reichardt detector whose sign tracks direction
+- [x] Hand-built Hassenstein–Reichardt detector whose sign tracks direction
 - [ ] Warp unit tests pass (true v gives near-zero error, v = 0 clearly more)
 - [ ] Tiny learnable eye: 1D conv across receptors + per-column GRU with shared weights
 - [ ] Train four ways from the same initial weights: supervised oracle, temporal prediction (k = 1, 3, 5), photometric warp, latent prediction (optional)
